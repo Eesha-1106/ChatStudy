@@ -72,57 +72,39 @@ User authentication mechanisms are essential to ensure secure and authorized acc
 Client-server chat applications are versatile tools that facilitate real-time communication between users over a network. They incorporate various components, including server-side and client-side elements, and must consider factors such as security, scalability, and concurrency. As technology continues to advance, client-server chat applications remain integral for collaborative communication in various domains.
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
-## program:
-CLIENT:
-```
-import socket;
 
-s=socket.socket()
-s.bind(('localhost', 8000))
+## PROGRAM :
 
-s.listen(5)
+## Server :
 
-c,addr=s.accept()
-size=int(input("Enter number of frames to send: "))
 
-l=list(range (size))
+import socket 
+s=socket.socket() 
+s.bind(('localhost',5000)) 
+s.listen(5) 
+c,addr=s.accept() 
+while True: 
+            ClientMessage=c.recv(1024).decode() 
+            print("Client > ",ClientMessage) 
+            msg=input("Server > ") 
+            c.send(msg.encode())
 
-s=int(input("Enter window size:"))
 
-st=0
-i=0
+## Client :
 
-while True:
- while (i<len(l)):
+import socket 
+s=socket.socket() 
+s.connect(('localhost',5000)) 
+while True: 
+    msg=input("Client > ") 
+    s.send(msg.encode()) 
+    print("Server > ",s.recv(1024).decode())
 
-                                                 st+=s
 
-                                                 c.send(str(l[i:st]).encode())
-                                                 ack=c.recv(1024).decode ()
+## OUTPUT:
 
-                                                 if ack:
-                                                    print (ack)
-
-                                                    i+=s
-
-```
-SERVER:
-```
-import socket
-
-s = socket.socket()
-s.connect(('localhost', 8000))
-
-while True:
-  print(s.recv(1024).decode())
-  s.send("acknowledgement received from the server".encode())
-
-```
-## output:
-![Screenshot 2024-04-26 193344](https://github.com/Ragavikrishnan/ChatStudy/assets/144870428/c0450521-ca1c-44c1-8b68-0cddde6ebf96)
-
+<img width="1920" height="1200" alt="Screenshot 2025-09-18 094310" src="https://github.com/user-attachments/assets/4da80605-ed2b-48d5-9a3c-5c72cc4d5f21" />
 
 ## Result:
 
 Thus the study on Client Server Chat Applications has been performed
-
