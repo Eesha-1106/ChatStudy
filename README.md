@@ -76,7 +76,7 @@ Client-server chat applications are foundational to real-time communication over
 ## PROGRAM :
 
 ## Server :
-
+```
 
 import socket 
 s=socket.socket() 
@@ -89,9 +89,9 @@ while True:
             msg=input("Server > ") 
             c.send(msg.encode())
 
-
+```
 ## Client :
-
+```
 import socket 
 s=socket.socket() 
 s.connect(('localhost',5000)) 
@@ -100,7 +100,7 @@ while True:
     s.send(msg.encode()) 
     print("Server > ",s.recv(1024).decode())
 
-
+```
 ## OUTPUT:
 
 <img width="1920" height="1200" alt="Screenshot 2025-09-18 094310" src="https://github.com/user-attachments/assets/4da80605-ed2b-48d5-9a3c-5c72cc4d5f21" />
